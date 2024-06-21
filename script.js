@@ -2,7 +2,6 @@
 
 // using the date object / creating the date object
 const date = new Date();
-console.log(date);
 const hours = date.getHours();
 const minutes = date.getMinutes();
 const seconds = date.getSeconds();
@@ -14,15 +13,30 @@ const Clock = function(hours, minutes, seconds) {
     this.hours = hours;
     this.minutes = minutes;
     this.seconds = seconds;
+    this._twelveHourClock = false;
+    this._period;
+
+    this._padInput = (data) => data.toString().padStart(2, 0);
 
     this.getFormattedTime = function () {
-        const padInput = (data) => data.toString().padStart(2, 0);
-        
-        return `${padInput(this.hours)}:${padInput(this.minutes)}:${padInput(this.seconds)}`;
+        return `${this._padInput(this.hours)}:${this._padInput(this.minutes)}:${this._padInput(this.seconds)}`;
     };
 
     this.get12HourTime = function() {
+        if (this.hours === 0) {
+            this.hours = 12;
+            this._period = 'AM';
+            return `${this._padInput(this.hours)}:${this._padInput(this.minutes)}:${this._padInput(this.seconds)} ${this._period}`;
+            
+        };
 
+        if (this.hours >= 12) {
+            this._period = 'PM';
+            if (this.hours > 12) {
+                this.hours -= 12;
+            }
+            return `${this._padInput(this.hours)}:${this._padInput(this.minutes)}:${this._padInput(this.seconds)} ${this._period}`;
+        }
     };
 
     this.updateTime = function (hours, minutes, seconds) {
@@ -60,7 +74,7 @@ const display = function() {
 
 
 setInterval(display, 1000);
-// const print = () => console.log('hi')
+
 
 // Clock Customization:
 // • Task: Add options to customize the clock (e.g., 12/24-hour format, time zone,
@@ -70,4 +84,11 @@ setInterval(display, 1000);
 // within the Clock object.
 // o Output Test: Verify that customization options affect the clock display
 // as expected.
+const buttonContainer = document.querySelector('.buttons');
+buttonContainer.addEventListener('click', function(e) {
+    if (e.target.classList.contains('time_format-12')) {
+        console.log(e.target.textContent);
+    }
+    console.log(clock.get12HourTime());
+})
 
