@@ -13,10 +13,12 @@ const Clock = function(hours, minutes, seconds) {
     this.hours = hours;
     this.minutes = minutes;
     this.seconds = seconds;
-    this._twelveHourClock = false;
+    this._isTwelveHours = false;
     this._period;
 
     this._padInput = (data) => data.toString().padStart(2, 0);
+
+    this.setTimeMode = (isFalse = false) => this._isTwelveHours = isFalse;
 
     this.getFormattedTime = function () {
         return `${this._padInput(this.hours)}:${this._padInput(this.minutes)}:${this._padInput(this.seconds)}`;
@@ -48,17 +50,7 @@ const Clock = function(hours, minutes, seconds) {
 
 const clock = new Clock(hours, minutes, seconds);
 
-
-
-// const getFormattedTime = function() {
-//     // should return a string format in HH:MM:SS
-//     const padInput = (data) => data.toString().padStart(2, 0);
-    
-//     return `${padInput(hours)}:${padInput(minutes)}:${padInput(seconds)}`;
-// }
-// getFormattedTime();
-
-
+const clockContainer = document.querySelector('.clock');
 
 const display = function() {
     const date = new Date();
@@ -66,10 +58,12 @@ const display = function() {
     const minutes = date.getMinutes();
     const seconds = date.getSeconds();
     
-    const clockContainer = document.querySelector('.clock');
     clock.updateTime(hours, minutes, seconds);
+    
+    clock._isTwelveHours ? (clockContainer.textContent = clock.get12HourTime()) : (clockContainer.textContent = clock.getFormattedTime());
 
-    clockContainer.textContent = clock.getFormattedTime();
+    // clockContainer.textContent = clock.getFormattedTime();
+    // clockContainer.textContent = clock.getFormattedTime();
 }
 
 
@@ -87,8 +81,14 @@ setInterval(display, 1000);
 const buttonContainer = document.querySelector('.buttons');
 buttonContainer.addEventListener('click', function(e) {
     if (e.target.classList.contains('time_format-12')) {
-        console.log(e.target.textContent);
+        clock.setTimeMode(true);
+        return;
     }
-    console.log(clock.get12HourTime());
+
+    if (e.target.classList.contains('time_format-24')) {
+        clock.setTimeMode(false);
+        return;
+    }
+    
 })
 

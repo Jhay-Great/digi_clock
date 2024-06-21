@@ -14,6 +14,19 @@ body {
 
     background: url();
 }
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    backdrop-filter: blur(15px);
+    background: #00f1;
+    padding: 2rem;
+    border: none;
+    border-radius: 5px;
+}
+
 
 /* TIME UI */
 .clock {
