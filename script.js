@@ -22,17 +22,37 @@ const Clock = function(hours, minutes, seconds) {
     this.hours = hours;
     this.minutes = minutes;
     this.seconds = seconds;
+
+    this.getFormattedTime = function () {
+        const padInput = (data) => data.toString().padStart(2, 0);
+        
+        return `${padInput(hours)}:${padInput(minutes)}:${padInput(seconds)}`;
+    };
 }
+
 const clock = new Clock(hours, minutes, seconds);
 console.log(clock);
+console.log(clock.getFormattedTime());
+
+
+// const getFormattedTime = function() {
+//     // should return a string format in HH:MM:SS
+//     const padInput = (data) => data.toString().padStart(2, 0);
+    
+//     return `${padInput(hours)}:${padInput(minutes)}:${padInput(seconds)}`;
+// }
+// getFormattedTime();
+
+
+
 
 /**
- * Time Formatting:
-• Task: Add methods to the Clock object for formatting time:
-o getFormattedTime(): Returns a string in the format “HH:MM:SS”.
-o get12HourTime(): Returns a string with AM/PM.
-Evaluation:
-o Code Review: Check for accurate time formatting logic within the
-methods.
-o Output Test: Verify that formatted time strings are produced correctly.
+ * Dynamic Display:
+• Task: Create a function to display the clock on a webpage (e.g., using a div
+element).
+• Evaluation:
+o Code Review: Assess the use of DOM manipulation to update the clock
+display.
+o Output Test: Confirm that the clock display updates every second with
+the correct time.
  */
