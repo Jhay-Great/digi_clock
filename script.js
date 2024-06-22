@@ -31,7 +31,7 @@ const Clock = function(hours, minutes, seconds) {
             return `${this._padInput(this.hours)}:${this._padInput(this.minutes)}:${this._padInput(this.seconds)} ${this._period}`;
             
         };
-
+        
         if (this.hours >= 12) {
             this._period = 'PM';
             if (this.hours > 12) {
@@ -39,6 +39,9 @@ const Clock = function(hours, minutes, seconds) {
             }
             return `${this._padInput(this.hours)}:${this._padInput(this.minutes)}:${this._padInput(this.seconds)} ${this._period}`;
         }
+        
+        this._period = 'AM';
+        return `${this._padInput(this.hours)}:${this._padInput(this.minutes)}:${this._padInput(this.seconds)} ${this._period}`;
     };
 
     this.updateTime = function (hours, minutes, seconds) {
@@ -91,4 +94,13 @@ buttonContainer.addEventListener('click', function(e) {
     }
     
 })
+
+// time zone implementation
+const res = (navigator.language)
+console.log(res);
+
+console.log(new Date().toLocaleString(res, {
+    timeZone: 'America/New_York'
+}))
+
 
