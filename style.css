@@ -39,9 +39,57 @@ main {
 }
 
 .time_format-12,
-.time_format-24 {
+.time_format-24,
+button {
     padding: 0.7rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
+
+/* ALARM TIMER */
+.alarm_popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+
+    width: min(500px, 100%);
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    border: none;
+    border-radius: 5px;
+    background-color: #009a;
+}
+.alarm_popup img {
+    width: 80px;
+}
+
+img {
+    width: 50px;
+    aspect-ratio: 1;
+    transform: translateX(-10px);
+}
+.alarm_popup p {
+    font-size: 1.5rem;
+    text-align: center;
+}
+.alarm-on {
+    animation: tilt-shaking 0.25s infinite;
+}
+
+@keyframes tilt-shaking {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    50% { transform: rotate(0eg); }
+    75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+

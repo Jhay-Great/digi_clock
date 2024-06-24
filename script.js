@@ -52,14 +52,51 @@ const Clock = function(hours, minutes, seconds) {
         this.seconds = seconds;
     }
 
+    // =======================ALARM FUNCTIONALITY=======================
     // setting alarm
     this.setAlarm = function (setTime) {
+        if (typeof setTime !== 'string' || !setTime) return;
 
-    }
+        const now = new Date();
+        const selectedDate = new Date(setTime);
+    
+        if (selectedDate <= now) return 'Cannot select a previous or current time';
+    
+        if (alarmTimes.includes(selectedDate)) return 'alarm set time already exists';
+    
+        const countDown = selectedDate - now;
+    
+        this.alarmTimes.push(countDown);
+        // console.log('alarm set successfully')
+    };
     // getting alarm
-    this.getAlarm = function () {
+    this._getAlarm = function () {
+        return this.alarmTimes;
+    };
+    // play alarm
+    this._soundAlarm = function (element, position, container) {
+        this._getAlarm().forEach(alarm => {
+            console.log(alarm);
+            setTimeout(() => {
+                console.log('Playing alarm...');
+                this.renderHTML(element, position, container);
+                // console.log(isAlarmTimerReady);
+                isAlarmTimerReady = true;
+            }, alarm);
+        });
+    };
 
-    }
+    this.displayAlarmPopup = function(element, position, container) {
+        // let isAlarmTimerReady = false;
+
+        this._soundAlarm(element, position, container);
+        // isAlarmTimerReady && this.renderHTML(element, position, container);
+    };
+
+    this.renderHTML = function(element, position, container) {
+        container.insertAdjacentHTML(position, element);
+    };
+
 }
 
 const clock = new Clock(hours, minutes, seconds);
@@ -109,19 +146,36 @@ buttonContainer.addEventListener('click', function(e) {
 
 // setting alarm listeners
 const alarmTime = document.querySelector('.alarm-clock');
-const alarmButton = document.querySelector('.accept-alarm')
-alarmButton.addEventListener('click', function(e) {
-    // console.log(alarmTime.value);
-    // console.dir(alarmTime);
+const setAlarmButton = document.querySelector('.accept-alarm');
+const alarmButton = document.querySelector('.alarm-btn');
+setAlarmButton.addEventListener('click', function(e) {
 
     const time = alarmTime.value;
-    // console.log(typeof time);
+    const html = 
+    `
+    <section class="alarm_popup">
+        <img class="alarm-on" src="./assets/alarm.svg" alt="alarm clock svg logo">
+        <p>Timer is ready, kindly perform your activity</p>
+        <button class="alarm-btn">Ok</button>
+    </section>
+    `;
+    
+    const body = document.querySelector('body');
+    
+    // document.querySelector('body').insertAdjacentHTML('afterbegin', html);
+    
+    
+    // OBJECT METHODS
+    clock.setAlarm(time);
+    clock.displayAlarmPopup(html, 'afterbegin', body);
 
-    setAlarm(time);
-    soundAlarm()
-    // console.log(getAlarm());
-    // console.log('alarm going off: ', soundAlarm())
 
+})
+
+document.addEventListener('click', function(e) {
+    if (!e.target.classList.contains('alarm-btn')) return;
+    console.log('clicked');
+    document.querySelector('.alarm_popup').remove();
 })
 
 
@@ -162,7 +216,6 @@ const getAlarm = function () {
     return alarmTimes;
 }
 const soundAlarm = function () {
-
     getAlarm().forEach(alarm => {
         console.log(alarm);
         setTimeout(() => {
@@ -170,7 +223,6 @@ const soundAlarm = function () {
         }, alarm);
         
     });
-
     console.log('alarm is yet to play')
     
     // const now = new Date();
