@@ -115,7 +115,7 @@ header p:first-child {
     transition: all 300ms ease-out;
     border-color: gray;
 }
-.alarm-button img {
+.alarm-button img, .timer img {
     width: 30px;
     aspect-ratio: 1;
 }
@@ -125,6 +125,18 @@ header p:first-child {
 /* ALARM TIMER */
 .alarm-container {
 
+}
+.alarms {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1rem 0;
+}
+.timer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 1rem;
 }
 .alarm_popup {
     position: absolute;
@@ -149,11 +161,11 @@ header p:first-child {
     width: 80px;
 }
 
-img {
+/* img {
     width: 50px;
     aspect-ratio: 1;
     transform: translateX(-10px);
-}
+} */
 .alarm_popup p {
     font-size: 1.5rem;
     text-align: center;
