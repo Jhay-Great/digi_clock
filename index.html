@@ -5,18 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digi Clock</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <!-- <script src="script.js" defer></script> -->
 </head>
 <body>
     <main>
         <!-- clock / timer -->
         <section class="clock">
+            <!-- header -->
+            <header>
+                <p class="greeting">Good morning</p>
+                <p class="description">Welcome to a bright day</p>
+            </header>
 
+            <section class="time-container">
+                <div class="hour">
+                    <p>10</p>
+                    <p>hour</p>
+                </div>
+                <p class="dividers">:</p>
+                <div class="minutes">
+                    <p>10</p>
+                    <p>minutes</p>
+                </div>
+                <p class="dividers">:</p>
+                <div class="seconds">
+                    <p>10</p>
+                    <p>seconds</p>
+                </div>
+            </section>
+
+            <!-- timer progress -->
+            <div class="progress-container">
+                <div class="progress"></div>
+            </div>
+
+            <!-- alarm button -->
+            <button class="alarm-button">
+                <!-- svg -->
+                <img src="./assets/alarm.svg" alt="svg alarm clock">
+                Set alarm
+            </button>
+            
         </section>
 
         <!-- alarm timer -->
-        <section class="alarm-timers">
-            
+        <section class="alarm-container">
+            <header>
+                <p>Alarms</p>
+            </header>
         </section>
     </main>
     <!-- <section class="alarm_popup">
