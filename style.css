@@ -132,12 +132,25 @@ header p:first-child {
     gap: 1.5rem;
     margin: 1rem 0;
 }
+.alarm > div {
+    display: flex;
+    justify-content: space-between;
+}
+.alarm > div button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
 .timer {
     display: flex;
     align-items: center;
     gap: 5px;
     margin-bottom: 1rem;
 }
+
+/* intial styles */
 .alarm_popup {
     position: absolute;
     top: 50%;
@@ -190,9 +203,5 @@ header p:first-child {
     background: #002a;
 }
 
-/* v2 styles */
-body {
-
-}
 
 
