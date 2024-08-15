@@ -91,5 +91,13 @@ img {
     75% { transform: rotate(-5deg); }
     100% { transform: rotate(0deg); }
   }
+  
+.time_format_container {
+    width: min(200px, 100%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #002a;
+}
 
 

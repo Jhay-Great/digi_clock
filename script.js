@@ -65,6 +65,7 @@ const Clock = function(hours, minutes, seconds) {
         if (alarmTimes.includes(selectedDate)) return 'alarm set time already exists';
     
         const countDown = selectedDate - now;
+        console.log(countDown);
     
         this.alarmTimes.push(countDown);
         // console.log('alarm set successfully')
@@ -129,7 +130,7 @@ setInterval(display, 1000);
 // within the Clock object.
 // o Output Test: Verify that customization options affect the clock display
 // as expected.
-const buttonContainer = document.querySelector('.buttons');
+const buttonContainer = document.querySelector('.time_format_container ');
 buttonContainer.addEventListener('click', function(e) {
     if (e.target.classList.contains('time_format-12')) {
         clock.setTimeMode(true);
