@@ -26,7 +26,7 @@ main {
     border: none;
     border-radius: 5px;
 
-    width: 90%;
+    width: 70%;
     /* aspect-ratio: 3/2; */
     
 }
@@ -35,15 +35,15 @@ main {
 /* TIME UI */
 .clock, .alarm-container {
     flex: 1;
+    padding: 2rem;
+    border: none;
+    border-radius: 30px;
+    background: #fff;
 }
 .clock {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding: 2rem;
-    border: none;
-    border-radius: 10px;
-    background: #fff;
 }
 .clock header {
     display: flex;
@@ -51,11 +51,11 @@ main {
     gap: 5px;
 }
 header p:first-child {
-    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 600;
 }
 .description {
-    font-size: clamp(.8rem, 5vw, 1.2rem);
+    font-size: clamp(.8rem, 2vw, 1.2rem);
 }
 
 .time-container {
@@ -123,6 +123,9 @@ header p:first-child {
 
 
 /* ALARM TIMER */
+.alarm-container {
+
+}
 .alarm_popup {
     position: absolute;
     top: 50%;
